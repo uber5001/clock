@@ -2,18 +2,18 @@
 <html>
 <head>
 <style>
-	html {width:100%; height:100%;}
+	@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+	html, body {width:100%; height:100%;}
 	body {
-		width: 100%;
-		height: 10rem;
-		font-size: 10rem;
-		left:0;top:0;bottom:0;right:0;
-		position:absolute;
-		margin: auto;
-		background: black;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-size: 15rem;
+		background-color: black;
 		color: white;
 		text-align: center;
-		font-family: monospace;
+		margin: 0;
+		font-family: "Open Sans";
 	}
 </style>
 <script>
@@ -22,29 +22,61 @@ setTimeout(function() {
 	window.reload();
 }, 1000*60*60);
 
-setInterval(function() {
+function clockLoop() {
 	//clock render
 	var date = new Date();
-	var str = ""
-		+ pad(date.getHours() % 12, "&nbsp;")
-		+ " "
-		+ pad(date.getMinutes(), "0")
-		+ " "
-		+ pad(date.getSeconds(), "0");
+	hours.innerHTML = english[date.getHours() % 12]
+	minutes.innerHTML=english[date.getMinutes()]
+	//seconds.innerHTML="and " + english[date.getSeconds()] + " seconds";
+}
 
-	document.body.innerHTML = str;
-}, 1000);
+window.onload = clockLoop;
+setInterval(clockLoop, 1000);
 
-function pad(str, c) {
-	str = "" + str;
-	while (str.length < 2) str = c + str;
-	return str;
+var english = [
+	"Oh",
+	"One",
+	"Two",
+	"Three",
+	"Four",
+	"Five",
+	"Six",
+	"Seven",
+	"Eight",
+	"Nine",
+	"Ten",
+	"Eleven",
+	"Twelve",
+	"Thirteen",
+	"Fourteen",
+	"Fifteen",
+	"Sixteen",
+	"Seventeen",
+	"Eighteen",
+	"Nineteen",
+	"Twenty"
+]
+english[30] = "thirty";
+english[40] = "fourty";
+english[50] = "fifty";
+for (var i = 0; i < 60; i++) {
+	if (i > 20 && (i%10) != 0) {
+		var lower = i%10;
+		var upper = Math.floor(i/10)*10;
+		lower = english[lower];
+		upper = english[upper];
+		english[i] = upper + "-" + lower;
+	}
 }
 
 window.onclick = function (){document.body.webkitRequestFullScreen()}
 </script>
 </head>
 <body>
-	
+	<span>
+		<span id="hours"></span>
+		<span id="minutes"></span>
+	</span>
+	<!--<span id="seconds"></span>-->
 </body>
 </html>
