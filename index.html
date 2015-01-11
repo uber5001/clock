@@ -36,6 +36,7 @@ setInterval(function() {
 }, 1000);
 
 function pad(str, c) {
+	str = "" + str;
 	while (str.length < 2) str = str + c;
 	return str;
 }
