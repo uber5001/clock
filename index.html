@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<style>
+	html {width:100%; height:100%;}
+	body {
+		width: 100%;
+		height: 10rem;
+		font-size: 10rem;
+		left:0;top:0;bottom:0;right:0;
+		position:absolute;
+		margin: auto;
+		background: black;
+		color: white;
+		text-align: center;
+		font-family: monospace;
+	}
+</style>
+<script>
+setTimeout(function() {
+	//hourly refresh
+	window.reload();
+}, 1000*60*60);
+
+setInterval(function() {
+	//clock render
+	var date = new Date();
+	var str = ""
+		+ pad(date.getHours() % 12, "&nbsp;")
+		+ " "
+		+ pad(date.getMinutes(), "0")
+		+ " "
+		+ pad(date.getSeconds(), "0");
+
+	document.body.innerHTML = str;
+}, 1000);
+
+function pad(str, c) {
+	while (str.length < 2) str = str + c;
+	return str;
+}
+</script>
+</head>
+<body>
+	
+</body>
+</html>
