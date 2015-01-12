@@ -26,7 +26,7 @@ function clockLoop() {
 	//clock render
 	var date = new Date();
 	hours.innerHTML = english[date.getHours() % 12]
-	minutes.innerHTML=english[date.getMinutes()]
+	minutes.innerHTML= ((date.getMinutes() < 10)? "oh " : "") + english[date.getMinutes()]
 	//seconds.innerHTML="and " + english[date.getSeconds()] + " seconds";
 }
 
@@ -34,7 +34,7 @@ window.onload = clockLoop;
 setInterval(clockLoop, 1000);
 
 var english = [
-	"oh",
+	"oh clock",
 	"one",
 	"two",
 	"three",
