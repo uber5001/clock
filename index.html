@@ -25,7 +25,7 @@ setTimeout(function() {
 function clockLoop() {
 	//clock render
 	var date = new Date();
-	hours.innerHTML = english[date.getHours() % 12]
+	hours.innerHTML = english[((date.getHours() + 1) % 12) - 1];
 	minutes.innerHTML= ((date.getMinutes() < 10)? "oh " : "") + english[date.getMinutes()]
 	//seconds.innerHTML="and " + english[date.getSeconds()] + " seconds";
 }
@@ -57,7 +57,7 @@ var english = [
 	"twenty"
 ]
 english[30] = "thirty";
-english[40] = "fourty";
+english[40] = "forty";
 english[50] = "fifty";
 for (var i = 0; i < 60; i++) {
 	if (i > 20 && (i%10) != 0) {
