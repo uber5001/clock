@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<style>
+	@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+	html, body {width:100%; height:100%;}
+	body {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-size: 25vmin;
+		background-color: black;
+		color: white;
+		text-align: center;
+		margin: 0;
+		font-family: "Open Sans";
+	}
+</style>
+<script>
+setTimeout(function() {
+	//hourly refresh
+	window.location.reload();
+}, 1000*60*60);
+
+function clockLoop() {
+	//clock render
+	var date = new Date();
+	hours.innerHTML = english[((date.getHours() - 1) % 12) + 1];
+	minutes.innerHTML= ((date.getMinutes() < 10)? "oh " : "") + english[date.getMinutes()]
+	//seconds.innerHTML="and " + english[date.getSeconds()] + " seconds";
+}
+
+window.onload = clockLoop;
+setInterval(clockLoop, 1000);
+
+var english = [
+	"clock",
+	"one",
+	"two",
+	"three",
+	"four",
+	"five",
+	"six",
+	"seven",
+	"eight",
+	"nine",
+	"ten",
+	"eleven",
+	"twelve",
+	"thirteen",
+	"fourteen",
+	"fifteen",
+	"sixteen",
+	"seventeen",
+	"eighteen",
+	"nineteen",
+	"twenty"
+]
+english[30] = "thirty";
+english[40] = "forty";
+english[50] = "fifty";
+for (var i = 0; i < 60; i++) {
+	if (i > 20 && (i%10) != 0) {
+		var lower = i%10;
+		var upper = Math.floor(i/10)*10;
+		lower = english[lower];
+		upper = english[upper];
+		english[i] = upper + "-" + lower;
+	}
+}
+
+window.onclick = function (){document.body.webkitRequestFullScreen()}
+</script>
+</head>
+<body>
+	<span>
+		<span id="hours"></span>
+		<span id="minutes"></span>
+	</span>
+	<!--<span id="seconds"></span>-->
+</body>
+</html>
