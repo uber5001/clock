@@ -25,7 +25,7 @@ setTimeout(function() {
 function clockLoop() {
 	//clock render
 	var date = new Date();
-	hours.innerHTML = english[((date.getHours() - 1) % 12) + 1];
+	hours.innerHTML = english[((date.getHours() + 11) % 12) + 1];
 	minutes.innerHTML= ((date.getMinutes() < 10)? "oh " : "") + english[date.getMinutes()]
 	//seconds.innerHTML="and " + english[date.getSeconds()] + " seconds";
 }
